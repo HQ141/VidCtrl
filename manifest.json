@@ -1,0 +1,80 @@
+{
+  "manifest_version": 3,
+  "name": "Unified Video Control",
+  "short_name": "VideoControl",
+  "version": "1.0.0",
+  "description": "Control playback speed and volume of any HTML5 video on any website with one consistent set of controls and shortcuts.",
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "action": {
+    "default_title": "Unified Video Control",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
+
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["defaults.js", "content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true,
+      "match_origin_as_fallback": true
+    }
+  ],
+
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+
+  "commands": {
+    "speed-up": {
+      "suggested_key": { "default": "Alt+Shift+Period" },
+      "description": "Increase playback speed"
+    },
+    "speed-down": {
+      "suggested_key": { "default": "Alt+Shift+Comma" },
+      "description": "Decrease playback speed"
+    },
+    "volume-up": {
+      "suggested_key": { "default": "Alt+Shift+Up" },
+      "description": "Increase volume"
+    },
+    "volume-down": {
+      "suggested_key": { "default": "Alt+Shift+Down" },
+      "description": "Decrease volume"
+    },
+    "speed-reset": {
+      "description": "Reset playback speed to 1x"
+    },
+    "toggle-mute": {
+      "description": "Toggle mute"
+    }
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "unified-video-control@example.com",
+      "strict_min_version": "128.0"
+    }
+  }
+}

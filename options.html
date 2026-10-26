@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Unified Video Control settings</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #1d1f24;
+        --muted: #646a76;
+        --line: #dde1e8;
+        --accent: #3b5bdb;
+        color-scheme: light dark;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #1d1f24;
+          --fg: #e8eaee;
+          --muted: #9aa1ad;
+          --line: #353944;
+          --accent: #748ffc;
+        }
+      }
+      body {
+        max-width: 480px;
+        margin: 0;
+        padding: 16px;
+        background: var(--bg);
+        color: var(--fg);
+        font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      fieldset {
+        margin: 0 0 16px;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      legend {
+        padding: 0 4px;
+        font-weight: 600;
+      }
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 0;
+      }
+      label.number {
+        justify-content: space-between;
+      }
+      input {
+        accent-color: var(--accent);
+      }
+      input[type="number"] {
+        width: 80px;
+        font: inherit;
+      }
+      .hint {
+        margin: 0 0 4px 26px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      #status {
+        min-height: 1.5em;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <fieldset>
+        <legend>Speed</legend>
+        <label class="number">
+          Step per shortcut press
+          <input name="speedStep" type="number" min="0.05" max="2" step="0.05" required />
+        </label>
+        <label><input name="forceSpeed" type="checkbox" /> Keep my speed when the site resets it</label>
+        <p class="hint">Sites often switch back to 1× on a new video or after an ad.</p>
+        <p class="hint">Speed is shared by every tab; volume stays separate for each tab.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Volume</legend>
+        <label class="number">
+          Step per shortcut press (%)
+          <input name="volumeStep" type="number" min="1" max="50" step="1" data-scale="100" required />
+        </label>
+        <label><input name="allowBoost" type="checkbox" /> Allow boosting above 100%</label>
+        <p class="hint">Not available for DRM-protected video (Netflix, Disney+, …).</p>
+        <label class="number">
+          Maximum boost (%)
+          <input name="maxBoost" type="number" min="100" max="600" step="50" data-scale="100" required />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Display</legend>
+        <label><input name="showOverlay" type="checkbox" /> Show speed and volume on the video when they change</label>
+      </fieldset>
+    </form>
+    <p id="status" role="status"></p>
+
+    <script src="defaults.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

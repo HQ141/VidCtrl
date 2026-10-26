@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Unified Video Control</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main id="controls" hidden>
+      <section>
+        <header>
+          <h2>Speed</h2>
+          <output id="speed-value">1×</output>
+        </header>
+        <div class="row">
+          <button id="speed-down" type="button" title="Slower" aria-label="Slower">−</button>
+          <input id="speed-range" type="range" min="0.25" max="4" step="0.05" aria-label="Speed" />
+          <button id="speed-up" type="button" title="Faster" aria-label="Faster">+</button>
+        </div>
+        <div id="presets" class="presets">
+          <button type="button" data-speed="1">1×</button>
+          <button type="button" data-speed="1.25">1.25×</button>
+          <button type="button" data-speed="1.5">1.5×</button>
+          <button type="button" data-speed="2">2×</button>
+          <button type="button" data-speed="3">3×</button>
+        </div>
+      </section>
+
+      <section>
+        <header>
+          <h2>Volume</h2>
+          <output id="volume-value">100%</output>
+        </header>
+        <div class="row">
+          <button id="mute" type="button" class="wide" aria-pressed="false">Mute</button>
+          <input id="volume-range" type="range" min="0" max="1" step="0.01" aria-label="Volume" />
+        </div>
+      </section>
+
+      <p id="note" class="note" hidden></p>
+    </main>
+
+    <p id="empty" class="empty" hidden>No video found on this page.</p>
+
+    <footer>
+      <a id="open-options" href="#">Settings</a>
+      <a id="open-shortcuts" href="#">Shortcuts</a>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

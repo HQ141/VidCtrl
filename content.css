@@ -1,0 +1,22 @@
+/* On-screen speed/volume indicator. Everything is !important because it lives in
+   arbitrary pages whose own styles could otherwise restyle it. top/left are set
+   inline (also !important) by content.js. */
+#uvc-overlay {
+  all: initial !important;
+  display: block !important;
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  max-width: 320px !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  color: #fff !important;
+  font: 600 16px/1.3 system-ui, -apple-system, "Segoe UI", sans-serif !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.15s ease !important;
+}
+
+#uvc-overlay.uvc-visible {
+  opacity: 1 !important;
+}
